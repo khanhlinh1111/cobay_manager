@@ -24,3 +24,24 @@ plugins {
 }
 
 include(":app")
+
+// Workaround for libraries not specifying namespace (AGP 8+)
+gradle.lifecycle.beforeProject {
+    if (file("src/main/AndroidManifest.xml").exists()) {
+        try {
+            val manifest = file("src/main/AndroidManifest.xml").readText()
+            val packageNameRegex = "package=\"([^\"]+)\"".toRegex()
+            val packageName = packageNameRegex.find(manifest)?.groupValues?.get(1)
+
+            if (packageName != null) {
+                extensions.configure<com.android.build.gradle.BaseExtension> {
+                    if (namespace == null) {
+                        namespace = packageName
+                    }
+                }
+            }
+        } catch (e: Exception) {
+            // Ignore errors if extension configuration fails
+        }
+    }
+}
