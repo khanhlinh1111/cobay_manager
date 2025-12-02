@@ -1,0 +1,55 @@
+name: CoBay Manager CI/CD
+
+# Kịch bản này chạy khi có code được push lên nhánh 'main'
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Lấy code từ kho về máy ảo
+      - uses: actions/checkout@v3
+
+      # 2. Cài đặt Java (cần cho Android build)
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      # 3. Cài đặt Flutter
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.10.0' # Hoặc version bạn đang dùng, tôi để 3.10 cho ổn định
+          channel: 'stable'
+
+      # 4. Tải các thư viện (dependencies)
+      - name: Get Dependencies
+        run: flutter pub get
+
+      # 5. Chạy sinh code (QUAN TRỌNG: Isar & Riverpod cần bước này)
+      - name: Run Build Runner
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
+      # 6. Kiểm tra lỗi (Analyze)
+      - name: Analyze Code
+        run: flutter analyze
+
+      # 7. Build Android APK (Bản release)
+      - name: Build Android APK
+        run: flutter build apk --release --no-tree-shake-icons
+
+      # 8. Build Web (Optional - để test xem web có chạy không)
+      - name: Build Web
+        run: flutter build web
+
+      # 9. Lưu file APK lại để tải về (Artifacts)
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk

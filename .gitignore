@@ -1,0 +1,62 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug/
+/android/app/profile/
+/android/app/release/
+
+# Flutter Web
+/web/flutter_bootstrap.js
+
+# Linux
+/linux/flutter/ephemeral/
+
+# Windows
+/windows/flutter/ephemeral/
+
+# Macos
+/macos/Flutter/ephemeral/
+
+# Isar / Build Runner generated files
+# Thường thì ta KHÔNG ignore file .g.dart để người khác clone về chạy được ngay
+# Nhưng nếu muốn repo sạch, có thể ignore (nhưng người khác phải chạy build_runner)
+# Ở đây tôi chọn KHÔNG ignore để tiện cho team nhỏ.
+# *.g.dart

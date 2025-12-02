@@ -1,0 +1,46 @@
+name: cobay_manager
+description: Ứng dụng quản lý Salon & BĐS dành cho người lớn tuổi (Cô Bảy).
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # State Management
+  flutter_riverpod: ^2.4.0
+  riverpod_annotation: ^2.3.0
+  
+  # Local Database (Offline-first)
+  isar: ^3.1.0
+  isar_flutter_libs: ^3.1.0
+  path_provider: ^2.1.1
+  
+  # UI & Accessibility
+  flutter_screenutil: ^5.9.0 # Responsive text size
+  google_fonts: ^6.1.0
+  intl: ^0.18.1 # Currency format
+  
+  # Voice & Hardware
+  speech_to_text: ^6.6.0
+  permission_handler: ^11.0.0
+  image_picker: ^1.0.4 # Chụp ảnh sổ đỏ
+  
+  # Utilities
+  uuid: ^4.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  
+  # Code Generation
+  build_runner: ^2.4.6
+  riverpod_generator: ^2.3.0
+  isar_generator: ^3.1.0
+
+flutter:
+  uses-material-design: true
