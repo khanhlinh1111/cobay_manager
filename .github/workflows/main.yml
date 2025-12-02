@@ -18,7 +18,6 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      # Dùng version 'stable' mới nhất để tương thích tốt với Dart 3
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
@@ -29,13 +28,11 @@ jobs:
       - name: Run Build Runner
         run: flutter pub run build_runner build --delete-conflicting-outputs
 
-      # Build APK luôn (bỏ qua bước analyze nếu muốn nhanh, nhưng giữ lại cho an toàn)
       - name: Build Android APK
         run: flutter build apk --release --no-tree-shake-icons
 
-      # Upload Artifacts
       - name: Upload APK
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4 # Đã cập nhật lên v4
         with:
           name: release-apk
           path: build/app/outputs/flutter-apk/app-release.apk
