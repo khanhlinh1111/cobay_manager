@@ -23,18 +23,15 @@ tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }
 
-// WORKAROUND: Fix lỗi thiếu namespace ở thư viện cũ (như isar_flutter_libs) khi dùng AGP 8
+// WORKAROUND: Fix lỗi thiếu namespace cho Isar (AGP 8+)
+// Dùng withPlugin thay vì afterEvaluate để tránh lỗi "project already evaluated"
 subprojects {
-    afterEvaluate {
-        // Kiểm tra xem project con này có phải là Android Library không
-        if (project.plugins.hasPlugin("com.android.library")) {
-            val android = project.extensions.getByName("android") as com.android.build.gradle.LibraryExtension
-            // Nếu chưa có namespace thì tự tạo
-            if (android.namespace == null) {
-                val defaultNamespace = "com.example.${project.name.replace("-", "_")}"
-                println("AUTO-FIX: Setting namespace for ${project.name} to $defaultNamespace")
-                android.namespace = defaultNamespace
-            }
+    pluginManager.withPlugin("com.android.library") {
+        val android = extensions.getByType(com.android.build.gradle.LibraryExtension::class.java)
+        if (android.namespace == null) {
+            val defaultNamespace = "com.example.${project.name.replace("-", "_")}"
+            println("AUTO-FIX: Setting namespace for ${project.name} to $defaultNamespace")
+            android.namespace = defaultNamespace
         }
     }
 }
