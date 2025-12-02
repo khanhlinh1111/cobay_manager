@@ -14,20 +14,20 @@ dependencies:
   flutter_riverpod: ^2.4.0
   riverpod_annotation: ^2.3.0
   
-  # Local Database (Offline-first)
-  isar: ^3.1.0
-  isar_flutter_libs: ^3.1.0
+  # Local Database (Isar 4 for AGP 8 support)
+  isar: ^4.0.0-dev.14
+  isar_flutter_libs: ^4.0.0-dev.14
   path_provider: ^2.1.1
   
   # UI & Accessibility
-  flutter_screenutil: ^5.9.0 # Responsive text size
+  flutter_screenutil: ^5.9.0
   google_fonts: ^6.1.0
-  intl: ^0.18.1 # Currency format
+  intl: ^0.18.1
   
   # Voice & Hardware
   speech_to_text: ^6.6.0
   permission_handler: ^11.0.0
-  image_picker: ^1.0.4 # Chụp ảnh sổ đỏ
+  image_picker: ^1.0.4
   
   # Utilities
   uuid: ^4.0.0
@@ -40,7 +40,7 @@ dev_dependencies:
   # Code Generation
   build_runner: ^2.4.6
   riverpod_generator: ^2.3.0
-  isar_generator: ^3.1.0
+  isar_generator: ^4.0.0-dev.14
 
 flutter:
   uses-material-design: true

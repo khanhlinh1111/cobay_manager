@@ -18,11 +18,9 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      # QUAN TRỌNG: Dùng Flutter 3.19.6 để tương thích với AGP 7.3.0 và Isar 3
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.19.6'
-          channel: 'stable'
+          channel: 'stable' # Quay lại stable
 
       - name: Get Dependencies
         run: flutter pub get
