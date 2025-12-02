@@ -20,7 +20,8 @@ jobs:
 
       - uses: subosito/flutter-action@v2
         with:
-          channel: 'stable' # Quay lại stable
+          flutter-version: '3.19.6'
+          channel: 'stable'
 
       - name: Get Dependencies
         run: flutter pub get
