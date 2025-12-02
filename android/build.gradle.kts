@@ -22,16 +22,3 @@ subprojects {
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }
-
-// WORKAROUND: Fix lỗi thiếu namespace cho Isar (AGP 8+)
-// Dùng withPlugin thay vì afterEvaluate để tránh lỗi "project already evaluated"
-subprojects {
-    pluginManager.withPlugin("com.android.library") {
-        val android = extensions.getByType(com.android.build.gradle.LibraryExtension::class.java)
-        if (android.namespace == null) {
-            val defaultNamespace = "com.example.${project.name.replace("-", "_")}"
-            println("AUTO-FIX: Setting namespace for ${project.name} to $defaultNamespace")
-            android.namespace = defaultNamespace
-        }
-    }
-}

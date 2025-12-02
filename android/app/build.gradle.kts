@@ -21,7 +21,7 @@ android {
     defaultConfig {
         applicationId = "com.example.cobay_manager"
         minSdk = flutter.minSdkVersion
-        targetSdk = 32 // Hạ targetSdk xuống 32 để tránh lỗi "Incorrect package" của AGP 8.x
+        targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
@@ -35,12 +35,4 @@ android {
 
 flutter {
     source = "../.."
-}
-
-// === FIX: FORCE ANDROIDX ACTIVITY VERSION ===
-// Ép dùng bản ổn định để tránh lỗi đòi hỏi AGP 8.9.1
-configurations.all {
-    resolutionStrategy {
-        force("androidx.activity:activity:1.9.3")
-    }
 }
