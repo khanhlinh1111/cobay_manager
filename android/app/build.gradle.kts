@@ -21,7 +21,7 @@ android {
     defaultConfig {
         applicationId = "com.example.cobay_manager"
         minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
+        targetSdk = 32 // Hạ targetSdk xuống 32 để tránh lỗi "Incorrect package" của AGP 8.x
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
